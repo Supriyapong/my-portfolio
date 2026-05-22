@@ -130,44 +130,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* ==========================================================================
-       4. PROJECT FILTER SYSTEM
-       ========================================================================== */
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const projectCards = document.querySelectorAll('.project-card');
-
-    filterButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // Remove active class from all buttons
-            filterButtons.forEach(button => button.classList.remove('active'));
-            // Add active class to clicked button
-            btn.classList.add('active');
-
-            const filterValue = btn.getAttribute('data-filter');
-
-            projectCards.forEach(card => {
-                const categories = card.getAttribute('data-category').split(' ');
-                
-                if (filterValue === 'all' || categories.includes(filterValue)) {
-                    card.classList.remove('hidden');
-                    // Add smooth entry animation
-                    card.style.opacity = '0';
-                    card.style.transform = 'scale(0.95)';
-                    setTimeout(() => {
-                        card.style.opacity = '1';
-                        card.style.transform = 'scale(1)';
-                        card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-                    }, 50);
-                } else {
-                    card.classList.add('hidden');
-                }
-            });
-        });
-    });
-
-    /* ==========================================================================
        5. SCROLL REVEAL ANIMATIONS (FADE-IN EFFECT FOR CARDS & BLOCKS)
        ========================================================================== */
-    const revealElements = document.querySelectorAll('.skill-card, .project-card, .timeline-item, .framework-card, .edu-card, .training-card');
+    const revealElements = document.querySelectorAll('.skill-card, .timeline-item, .framework-card, .edu-card, .training-card');
     
     // Set initial styles for animation elements
     revealElements.forEach(el => {
