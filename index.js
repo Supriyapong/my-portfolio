@@ -31,6 +31,50 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* ==========================================================================
+       1.5 BILINGUAL LANGUAGE SWITCHER (TH / EN)
+       ========================================================================== */
+    const langThBtn = document.getElementById('lang-th-btn');
+    const langEnBtn = document.getElementById('lang-en-btn');
+    const htmlElem = document.documentElement;
+
+    // Function to set language
+    const setLanguage = (lang) => {
+        if (lang === 'en') {
+            body.classList.remove('lang-th');
+            body.classList.add('lang-en');
+            htmlElem.setAttribute('lang', 'en');
+            
+            if (langThBtn && langEnBtn) {
+                langThBtn.classList.remove('active');
+                langEnBtn.classList.add('active');
+            }
+            
+            localStorage.setItem('lang', 'en');
+        } else {
+            body.classList.remove('lang-en');
+            body.classList.add('lang-th');
+            htmlElem.setAttribute('lang', 'th');
+            
+            if (langThBtn && langEnBtn) {
+                langEnBtn.classList.remove('active');
+                langThBtn.classList.add('active');
+            }
+            
+            localStorage.setItem('lang', 'th');
+        }
+    };
+
+    // Check for saved language preference or default to th
+    const savedLang = localStorage.getItem('lang') || 'th';
+    setLanguage(savedLang);
+
+    // Event listeners for buttons
+    if (langThBtn && langEnBtn) {
+        langThBtn.addEventListener('click', () => setLanguage('th'));
+        langEnBtn.addEventListener('click', () => setLanguage('en'));
+    }
+
+    /* ==========================================================================
        2. MOBILE NAVIGATION MENU
        ========================================================================== */
     const mobileNavToggle = document.getElementById('mobile-nav-toggle');
@@ -162,7 +206,11 @@ document.addEventListener('DOMContentLoaded', () => {
         contactForm.addEventListener('submit', (e) => {
             // Since action is "mailto:...", browser will open mail client.
             // We just show a friendly alert wishing them well and advising that it will open their mail client.
-            alert('ขอบคุณที่ให้ความสนใจติดต่อร่วมงานครับ! ระบบกำลังเปิดโปรแกรมส่งอีเมลในเครื่องของคุณเพื่อนำส่งข้อความไปยัง supriyapong@hotmail.com ครับ');
+            if (body.classList.contains('lang-en')) {
+                alert('Thank you for your interest! The system is opening your email client to send your message to supriyapong@hotmail.com.');
+            } else {
+                alert('ขอบคุณที่ให้ความสนใจติดต่อร่วมงานครับ! ระบบกำลังเปิดโปรแกรมส่งอีเมลในเครื่องของคุณเพื่อนำส่งข้อความไปยัง supriyapong@hotmail.com ครับ');
+            }
         });
     }
 });
