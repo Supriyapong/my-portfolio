@@ -239,11 +239,19 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--accent-color);
 }
 
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    order: 2;
+}
+
 .nav-menu {
     display: flex;
     list-style: none;
     align-items: center;
     gap: 1.5rem;
+    order: 1;
 }
 
 .nav-link {
