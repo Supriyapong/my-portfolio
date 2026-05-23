@@ -458,6 +458,26 @@ body.light-theme .btn-primary {
     line-height: 1.8;
 }
 
+.hero-bullets {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+}
+
+.hero-bullets li {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.hero-bullets li i {
+    color: var(--accent-color);
+    font-size: 0.9rem;
+}
+
 /* Hero Social Links */
 .hero-social-links {
     display: flex;
@@ -1088,7 +1108,7 @@ body.light-theme .filter-btn.active {
     line-height: 1.7;
 }
 
-.behavioral-frameworks {
+.framework-3b-container {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -1103,48 +1123,47 @@ body.light-theme .filter-btn.active {
     gap: 0.6rem;
 }
 
-.framework-card {
+.framework-3b-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+}
+
+.card-3b {
     background-color: var(--card-bg);
     border: 1px solid var(--card-border);
     border-radius: 12px;
     padding: 1.5rem;
     display: flex;
-    gap: 1.2rem;
-    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.8rem;
     transition: var(--transition-smooth);
 }
 
-.framework-card:hover {
+.card-3b:hover {
     border-color: var(--card-hover-border);
-    transform: translateX(5px);
+    transform: translateY(-3px);
     box-shadow: 0 5px 20px var(--shadow-color);
 }
 
-.framework-number {
-    font-family: 'Outfit', sans-serif;
+.icon-3b {
     font-size: 2rem;
-    font-weight: 800;
-    color: rgba(var(--accent-rgb), 0.25);
-    line-height: 1;
-    transition: var(--transition-smooth);
-}
-
-.framework-card:hover .framework-number {
     color: var(--accent-color);
-    transform: scale(1.1);
+    margin-bottom: 0.5rem;
 }
 
-.framework-info h4 {
-    font-size: 1.05rem;
-    font-weight: 700;
-    margin-bottom: 0.4rem;
+.title-3b {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
     color: var(--text-primary);
 }
 
-.framework-info p {
-    font-size: 0.85rem;
+.question-3b {
+    font-size: 0.95rem;
     color: var(--text-secondary);
-    line-height: 1.6;
+    line-height: 1.5;
+    font-style: italic;
 }
 
 /* ==========================================================================
