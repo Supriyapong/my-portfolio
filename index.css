@@ -38,31 +38,31 @@ body.dark-theme {
 
 /* Light Theme */
 body.light-theme {
-    --bg-primary: #f6f8f5;
-    --bg-secondary: #edf3ef;
-    --bg-tertiary: #e1ebe6;
+    --bg-primary: #f7f8f4;
+    --bg-secondary: #eef3ee;
+    --bg-tertiary: #dfe9e3;
     
-    --text-primary: #17201c;
-    --text-secondary: #4f6159;
-    --text-muted: #7b8a83;
+    --text-primary: #111a16;
+    --text-secondary: #33443d;
+    --text-muted: #5d6d66;
     
-    --accent-color: #1f7668;
-    --accent-light: #b88b36;
-    --accent-rgb: 31, 118, 104;
-    --accent-warm: #b88b36;
+    --accent-color: #155f54;
+    --accent-light: #8f671f;
+    --accent-rgb: 21, 95, 84;
+    --accent-warm: #8f671f;
     
-    --card-bg: rgba(255, 255, 255, 0.78);
-    --card-border: rgba(31, 118, 104, 0.14);
-    --card-hover-border: rgba(31, 118, 104, 0.38);
+    --card-bg: rgba(255, 255, 255, 0.92);
+    --card-border: rgba(21, 95, 84, 0.2);
+    --card-hover-border: rgba(21, 95, 84, 0.48);
     
-    --navbar-bg: rgba(246, 248, 245, 0.94);
-    --navbar-border: rgba(31, 118, 104, 0.12);
+    --navbar-bg: rgba(247, 248, 244, 0.97);
+    --navbar-border: rgba(21, 95, 84, 0.18);
     
-    --shadow-color: rgba(23, 32, 28, 0.08);
-    --glow-color: rgba(31, 118, 104, 0.025);
+    --shadow-color: rgba(17, 26, 22, 0.1);
+    --glow-color: rgba(21, 95, 84, 0.025);
     
     --input-bg: rgba(255, 255, 255, 0.92);
-    --input-border: rgba(31, 118, 104, 0.22);
+    --input-border: rgba(21, 95, 84, 0.28);
 }
 
 /* ==========================================================================
@@ -167,7 +167,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .text-gradient {
-    background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent-color) 100%);
+    background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent-color) 72%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -1759,15 +1759,19 @@ body.light-theme .contact-detail-item:hover .contact-detail-icon {
     }
 
     .brand-name {
-        font-size: 1.08rem;
+        font-size: 1.02rem;
     }
 
     .brand-surname {
-        font-size: 0.82rem;
+        font-size: 0.78rem;
     }
 
     .brand-subtitle {
-        display: none;
+        display: block;
+        margin-top: 0.54rem;
+        font-size: 0.52rem;
+        letter-spacing: 0.04em;
+        color: var(--text-secondary);
     }
 
     .nav-controls {
