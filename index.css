@@ -949,6 +949,34 @@ body.light-theme .social-icon-link:hover {
     line-height: 1.6;
 }
 
+.professional-boundary-note {
+    margin-top: 2.2rem;
+    padding: 1.35rem 1.5rem;
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    background-color: var(--card-bg);
+    color: var(--text-secondary);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.professional-boundary-note i {
+    color: var(--accent-color);
+    font-size: 1.25rem;
+    margin-top: 0.2rem;
+}
+
+.professional-boundary-note p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+.professional-boundary-note strong {
+    color: var(--text-primary);
+}
+
 /* ==========================================================================
    KEY PROJECTS SECTION (WITH FILTER ANIMATIONS)
    ========================================================================== */
@@ -1700,6 +1728,7 @@ body.light-theme .contact-detail-item:hover .contact-detail-icon {
 .experience-badge-floating,
 .fact-item,
 .skill-card,
+.professional-boundary-note,
 .filter-btn,
 .project-card,
 .timeline-content,
@@ -1717,6 +1746,7 @@ body.light-theme .contact-detail-item:hover .contact-detail-icon {
 .profile-card,
 .fact-item,
 .skill-card,
+.professional-boundary-note,
 .project-card,
 .timeline-content,
 .card-3b,
@@ -1731,6 +1761,7 @@ body.light-theme .contact-detail-item:hover .contact-detail-icon {
 .profile-card:hover,
 .fact-item:hover,
 .skill-card:hover,
+.professional-boundary-note:hover,
 .project-card:hover,
 .timeline-content:hover,
 .card-3b:hover,
@@ -1999,6 +2030,11 @@ a.contact-detail-item:hover {
     .project-brief-list li {
         grid-template-columns: 1fr;
         gap: 0.25rem;
+    }
+
+    .professional-boundary-note {
+        grid-template-columns: 1fr;
+        padding: 1.25rem;
     }
     
     .contact-form-panel {
