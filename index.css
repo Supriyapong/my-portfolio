@@ -1639,12 +1639,12 @@ body.light-theme .contact-detail-item:hover .contact-detail-icon {
     box-shadow: 0 4px 15px rgba(33, 117, 155, 0.3);
 }
 
-.btn-medium:hover {
-    background-color: #12100e;
+.btn-midgard:hover {
+    background-color: #2f5f4e;
     color: #ffffff !important;
-    border-color: #12100e;
+    border-color: #2f5f4e;
     transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(18, 16, 14, 0.3);
+    box-shadow: 0 4px 15px rgba(47, 95, 78, 0.3);
 }
 
 .contact-form-panel {
