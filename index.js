@@ -36,6 +36,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const langThBtn = document.getElementById('lang-th-btn');
     const langEnBtn = document.getElementById('lang-en-btn');
     const htmlElem = document.documentElement;
+    const formPlaceholders = {
+        th: {
+            'form-name': 'ชื่อ / หน่วยงาน',
+            'form-email': 'example@domain.com',
+            'form-subject': 'เช่น บรรยาย เวิร์กช็อป งานเขียน',
+            'form-message': 'เล่าโจทย์ ผู้ฟัง รูปแบบ ช่วงเวลา และข้อจำกัดด้านความลับหรือผลประโยชน์ทับซ้อนที่ควรรู้...'
+        },
+        en: {
+            'form-name': 'Name / Organization',
+            'form-email': 'example@domain.com',
+            'form-subject': 'e.g. Talk, Workshop, Writing Inquiry',
+            'form-message': 'Share the topic, audience, format, timeline, and any confidentiality or conflict considerations...'
+        }
+    };
+
+    const updateFormPlaceholders = (lang) => {
+        const placeholders = formPlaceholders[lang] || formPlaceholders.th;
+
+        Object.entries(placeholders).forEach(([id, placeholder]) => {
+            const field = document.getElementById(id);
+            if (field) {
+                field.setAttribute('placeholder', placeholder);
+            }
+        });
+    };
 
     // Function to set language
     const setLanguage = (lang) => {
@@ -62,6 +87,8 @@ document.addEventListener('DOMContentLoaded', () => {
             
             localStorage.setItem('lang', 'th');
         }
+
+        updateFormPlaceholders(lang);
     };
 
     // Check for saved language preference or default to th
