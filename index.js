@@ -89,11 +89,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         updateFormPlaceholders(lang);
+        updateContactFeedback();
     };
-
-    // Check for saved language preference or default to th
-    const savedLang = localStorage.getItem('lang') || 'th';
-    setLanguage(savedLang);
 
     // Event listeners for buttons
     if (langThBtn && langEnBtn) {
@@ -191,18 +188,95 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* ==========================================================================
-       6. CONTACT FORM CUSTOM FEEDBACK (ALERT UPON MAIL SUBMISSION)
+       6. CONTACT FORM (HTTPS SUBMISSION)
        ========================================================================== */
     const contactForm = document.getElementById('portfolio-contact-form');
+    const submitButton = document.getElementById('btn-form-submit');
+    const formStatus = document.getElementById('form-status');
+    let contactState = '';
+    let isSubmitting = false;
+    const contactFeedback = {
+        th: {
+            sending: 'กำลังส่งข้อความ กรุณารอสักครู่...',
+            success: 'ระบบรับข้อความเพื่อจัดส่งแล้ว ขอบคุณที่ติดต่อครับ หากยังไม่ได้รับการตอบกลับ สามารถส่งอีเมลโดยตรงได้ครับ',
+            error: 'ยังยืนยันการส่งข้อความไม่ได้ ข้อมูลที่กรอกยังอยู่ หากต้องการติดต่อทันที กรุณาส่งอีเมลโดยตรงด้านล่างครับ',
+            sendingLabel: 'กำลังส่ง...',
+            submitLabel: 'ส่งรายละเอียดเบื้องต้น'
+        },
+        en: {
+            sending: 'Sending your message. Please wait...',
+            success: 'Your message has been accepted for delivery. Thank you for getting in touch. If you do not receive a reply, you can email me directly.',
+            error: 'We could not confirm submission. Your details are still here. For immediate contact, please use the direct email link below.',
+            sendingLabel: 'Sending...',
+            submitLabel: 'Send Brief'
+        }
+    };
+
+    function updateContactFeedback() {
+        if (!submitButton || !formStatus) return;
+
+        const lang = body.classList.contains('lang-en') ? 'en' : 'th';
+        formStatus.hidden = !contactState;
+        formStatus.textContent = contactFeedback[lang][contactState] || '';
+        formStatus.dataset.state = contactState;
+        ['th', 'en'].forEach(language => {
+            submitButton.querySelector(`.lang-${language}`).textContent =
+                contactFeedback[language][isSubmitting ? 'sendingLabel' : 'submitLabel'];
+        });
+    }
+
     if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            // Since action is "mailto:...", browser will open mail client.
-            // We just show a friendly alert wishing them well and advising that it will open their mail client.
-            if (body.classList.contains('lang-en')) {
-                alert('Thank you for your interest! The system is opening your email client to send your message to supriyapong@hotmail.com.');
-            } else {
-                alert('ขอบคุณที่ให้ความสนใจติดต่อร่วมงานครับ! ระบบกำลังเปิดโปรแกรมส่งอีเมลในเครื่องของคุณเพื่อนำส่งข้อความไปยัง supriyapong@hotmail.com ครับ');
+        contactForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            if (isSubmitting || !contactForm.reportValidity()) return;
+
+            const formData = new FormData(contactForm);
+            if (String(formData.get('_honey') || '').trim()) return;
+
+            const editableFields = contactForm.querySelectorAll('.form-input, .form-textarea');
+            formData.set('_subject', `Portfolio inquiry: ${formData.get('subject')}`);
+            isSubmitting = true;
+            contactState = 'sending';
+            submitButton.disabled = true;
+            contactForm.setAttribute('aria-busy', 'true');
+            editableFields.forEach(field => { field.readOnly = true; });
+            updateContactFeedback();
+
+            const controller = new AbortController();
+            const timeout = setTimeout(() => controller.abort(), 20000);
+
+            try {
+                const endpoint = new URL(contactForm.action);
+                if (endpoint.protocol !== 'https:' || endpoint.hostname !== 'formsubmit.co') {
+                    throw new Error('Invalid contact endpoint');
+                }
+                endpoint.pathname = `/ajax${endpoint.pathname}`;
+                const response = await fetch(endpoint.href, {
+                    method: 'POST',
+                    headers: { 'Accept': 'application/json' },
+                    body: formData,
+                    signal: controller.signal,
+                    credentials: 'omit'
+                });
+                const result = await response.json();
+                if (!response.ok || (result.success !== true && result.success !== 'true')) {
+                    throw new Error('Submission was not confirmed');
+                }
+                contactState = 'success';
+                contactForm.reset();
+            } catch {
+                contactState = 'error';
+            } finally {
+                clearTimeout(timeout);
+                isSubmitting = false;
+                submitButton.disabled = false;
+                contactForm.removeAttribute('aria-busy');
+                editableFields.forEach(field => { field.readOnly = false; });
+                updateContactFeedback();
             }
         });
     }
+
+    const savedLang = localStorage.getItem('lang') || 'th';
+    setLanguage(savedLang);
 });

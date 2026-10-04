@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="index.css?v=7">
+    <link rel="stylesheet" href="index.css?v=8">
 </head>
 <body class="light-theme lang-th">
     
@@ -919,41 +919,57 @@
                             <span class="lang-th">ส่งข้อความถึงผม</span>
                             <span class="lang-en">Send a Message</span>
                         </h3>
-                        <!-- Form submits through standard mailto or local handler, customized visually -->
-                        <form action="mailto:supriyapong@hotmail.com" method="GET" enctype="text/plain" class="contact-form" id="portfolio-contact-form">
+                        <form action="https://formsubmit.co/supriyapong@hotmail.com" method="POST" class="contact-form" id="portfolio-contact-form">
+                            <input type="hidden" name="_subject" value="Portfolio inquiry">
+                            <input type="hidden" name="_template" value="table">
+                            <input type="hidden" name="_url" value="https://supriyapong.github.io/my-portfolio/">
+                            <div class="form-honeypot" aria-hidden="true" inert>
+                                <label for="form-website">Website</label>
+                                <input type="text" id="form-website" name="_honey" tabindex="-1" autocomplete="off">
+                            </div>
                             <div class="form-group">
                                 <label for="form-name" class="form-label">
                                     <span class="lang-th">ชื่อผู้ติดต่อ / หน่วยงาน</span>
                                     <span class="lang-en">Your Name / Organization</span>
                                 </label>
-                                <input type="text" id="form-name" name="name" class="form-input" placeholder="ชื่อ / หน่วยงาน" required>
+                                <input type="text" id="form-name" name="name" class="form-input" placeholder="ชื่อ / หน่วยงาน" maxlength="150" autocomplete="name" required>
                             </div>
                             <div class="form-group">
                                 <label for="form-email" class="form-label">
                                     <span class="lang-th">อีเมลติดต่อกลับ</span>
                                     <span class="lang-en">Email Address</span>
                                 </label>
-                                <input type="email" id="form-email" name="email" class="form-input" placeholder="example@domain.com" required>
+                                <input type="email" id="form-email" name="email" class="form-input" placeholder="example@domain.com" maxlength="254" autocomplete="email" required>
                             </div>
                             <div class="form-group">
                                 <label for="form-subject" class="form-label">
                                     <span class="lang-th">หัวข้อการติดต่อ</span>
                                     <span class="lang-en">Subject</span>
                                 </label>
-                                <input type="text" id="form-subject" name="subject" class="form-input" placeholder="เช่น บรรยาย เวิร์กช็อป งานเขียน" required>
+                                <input type="text" id="form-subject" name="subject" class="form-input" placeholder="เช่น บรรยาย เวิร์กช็อป งานเขียน" maxlength="200" required>
                             </div>
                             <div class="form-group">
                                 <label for="form-message" class="form-label">
                                     <span class="lang-th">ข้อความ</span>
                                     <span class="lang-en">Message Details</span>
                                 </label>
-                                <textarea id="form-message" name="body" class="form-textarea" placeholder="เล่าโจทย์ ผู้ฟัง รูปแบบ ช่วงเวลา และข้อจำกัดด้านความลับหรือผลประโยชน์ทับซ้อนที่ควรรู้..." required></textarea>
+                                <textarea id="form-message" name="message" class="form-textarea" placeholder="เล่าโจทย์ ผู้ฟัง รูปแบบ ช่วงเวลา และข้อจำกัดด้านความลับหรือผลประโยชน์ทับซ้อนที่ควรรู้..." maxlength="5000" required></textarea>
                             </div>
+                            <p class="form-privacy-note">
+                                <span class="lang-th">ข้อความและอีเมลติดต่อกลับจะส่งผ่าน FormSubmit เพื่อให้ผมตอบกลับ กรุณาส่งเฉพาะข้อมูลเบื้องต้นและหลีกเลี่ยงข้อมูลลับ</span>
+                                <span class="lang-en">Your message and reply address are processed by FormSubmit so I can respond. Please share an initial brief and avoid confidential information.</span>
+                            </p>
                             <button type="submit" class="btn btn-primary btn-full-width" id="btn-form-submit">
                                 <i class="fa-solid fa-paper-plane"></i>
                                 <span class="lang-th">ส่งรายละเอียดเบื้องต้น</span>
                                 <span class="lang-en">Send Brief</span>
                             </button>
+                            <p class="form-status" id="form-status" role="status" aria-live="polite" aria-atomic="true" hidden></p>
+                            <p class="form-fallback">
+                                <span class="lang-th">หรือส่งอีเมลโดยตรงที่</span>
+                                <span class="lang-en">Or email me directly at</span>
+                                <a href="mailto:supriyapong@hotmail.com">supriyapong@hotmail.com</a>
+                            </p>
                         </form>
                     </div>
                 </div>
@@ -966,10 +982,15 @@
     <footer class="footer">
         <div class="container footer-container">
             <p class="footer-copy">&copy; 2026 Supriyapong Takruad. Decision analysis, behavioral economics, speaking, and analytical writing.</p>
+            <p class="footer-credit" id="website-analytics-note" hidden>
+                <span class="lang-th">เว็บนี้ใช้ Cloudflare Web Analytics เพื่อดูสถิติการเข้าชมโดยไม่ใช้คุกกี้ติดตาม</span>
+                <span class="lang-en">This site uses Cloudflare Web Analytics for traffic statistics without tracking cookies.</span>
+            </p>
         </div>
     </footer>
 
     <!-- Custom JS -->
-    <script src="index.js?v=3"></script>
+    <script src="index.js?v=4"></script>
+    <script src="analytics.js?v=1" defer></script>
 </body>
 </html>
