@@ -696,13 +696,14 @@ body.light-theme .social-icon-link:hover {
 
 .profile-meta {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     gap: 1.2rem;
     font-size: 0.85rem;
     color: var(--text-muted);
 }
 
-.profile-meta span {
+.profile-meta > span {
     display: flex;
     align-items: center;
     gap: 0.35rem;
@@ -886,6 +887,108 @@ body.light-theme .social-icon-link:hover {
 /* ==========================================================================
    SKILLS & EXPERTISE SECTION
    ========================================================================== */
+/* Selected writing */
+.articles-section {
+    padding: 6rem 0;
+}
+
+.articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    gap: 2rem;
+}
+
+.article-card {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--neu-shadow-soft);
+}
+
+.article-cover {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    object-fit: contain;
+    background-color: var(--bg-secondary);
+}
+
+.article-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 0.8rem;
+}
+
+.article-source,
+.article-language {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+.article-title {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+.article-summary,
+.topic-audience,
+.topic-focus,
+.framework-intro {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.75;
+}
+
+.article-summary {
+    flex: 1;
+}
+
+.article-link {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--accent-color);
+}
+
+.article-link i {
+    flex-shrink: 0;
+}
+
+.article-title a:hover,
+.article-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.article-title a:focus-visible,
+.article-link:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 4px;
+}
+
+.topic-audience {
+    margin-top: 1rem;
+}
+
+.topic-focus {
+    margin-top: 0.6rem;
+}
+
+.topic-audience strong,
+.topic-focus strong {
+    color: var(--text-primary);
+}
+
 .skills-section {
     padding: 7rem 0;
     background-color: var(--bg-secondary);
@@ -1500,6 +1603,7 @@ body.light-theme .filter-btn.active {
 }
 
 .contact-info-panel {
+    min-width: 0;
     display: flex;
     flex-direction: column;
 }
@@ -1542,6 +1646,7 @@ a.contact-detail-item:hover {
 }
 
 .contact-detail-icon {
+    flex-shrink: 0;
     width: 44px;
     height: 44px;
     border-radius: 8px;
@@ -1572,9 +1677,14 @@ body.light-theme .contact-detail-item:hover .contact-detail-icon {
 }
 
 .detail-value {
+    overflow-wrap: anywhere;
     font-size: 1rem;
     font-weight: 700;
     color: var(--text-primary);
+}
+
+.contact-detail-item > div:last-child {
+    min-width: 0;
 }
 
 /* Contact Social links buttons layout */
@@ -1957,12 +2067,32 @@ a.contact-detail-item:hover {
     }
 }
 
-/* Up to 768px: Mobile Devices */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1100px) {
     .nav-toggle {
         display: block;
     }
 
+    .nav-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--bg-secondary);
+        border-bottom: 1px solid var(--navbar-border);
+        flex-direction: column;
+        padding: 2rem 0;
+        gap: 1.5rem;
+        display: none;
+        box-shadow: 0 10px 20px var(--shadow-color);
+    }
+
+    .nav-menu.open {
+        display: flex;
+    }
+}
+
+/* Up to 768px: Mobile Devices */
+@media screen and (max-width: 768px) {
     .nav-container {
         padding: 0.9rem 1rem;
     }
@@ -1998,24 +2128,6 @@ a.contact-detail-item:hover {
 
     .nav-controls {
         gap: 0.65rem;
-    }
-    
-    .nav-menu {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background-color: var(--bg-secondary);
-        border-bottom: 1px solid var(--navbar-border);
-        flex-direction: column;
-        padding: 2rem 0;
-        gap: 1.5rem;
-        display: none;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    }
-    
-    .nav-menu.open {
-        display: flex;
     }
     
     .theme-toggle-btn {

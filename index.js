@@ -41,13 +41,13 @@ document.addEventListener('DOMContentLoaded', () => {
             'form-name': 'ชื่อ / หน่วยงาน',
             'form-email': 'example@domain.com',
             'form-subject': 'เช่น บรรยาย เวิร์กช็อป งานเขียน',
-            'form-message': 'เล่าโจทย์ ผู้ฟัง รูปแบบ ช่วงเวลา และข้อจำกัดด้านความลับหรือผลประโยชน์ทับซ้อนที่ควรรู้...'
+            'form-message': 'เล่าหัวข้อ ผู้ฟัง รูปแบบ และช่วงเวลาที่สนใจ โดยยังไม่ต้องแนบข้อมูลลับครับ'
         },
         en: {
             'form-name': 'Name / Organization',
             'form-email': 'example@domain.com',
             'form-subject': 'e.g. Talk, Workshop, Writing Inquiry',
-            'form-message': 'Share the topic, audience, format, timeline, and any confidentiality or conflict considerations...'
+            'form-message': 'Share the topic, audience, preferred format and timing. Please leave out confidential information.'
         }
     };
 
@@ -88,6 +88,11 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('lang', 'th');
         }
 
+        document.title = lang === 'en'
+            ? 'Supriyapong Takruad | Independent Analyst, Writer & Speaker'
+            : 'สุปรียพงษ์ ตากรวด | Independent Analyst, Writer & Speaker';
+        themeToggleBtn.setAttribute('aria-label', lang === 'en' ? 'Switch light or dark theme' : 'สลับธีมมืดหรือสว่าง');
+        mobileNavToggle.setAttribute('aria-label', lang === 'en' ? 'Toggle navigation' : 'เปิดหรือปิดเมนู');
         updateFormPlaceholders(lang);
         updateContactFeedback();
     };
@@ -208,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
             success: 'Your message has been accepted for delivery. Thank you for getting in touch. If you do not receive a reply, you can email me directly.',
             error: 'We could not confirm submission. Your details are still here. For immediate contact, please use the direct email link below.',
             sendingLabel: 'Sending...',
-            submitLabel: 'Send Brief'
+            submitLabel: 'Send Message'
         }
     };
 
